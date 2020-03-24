@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function Square(props) {
-  return <button className="square">{props.value}</button>;
+  return <button className="square">{props.children}</button>;
 }
 
 class Board extends React.Component {
@@ -38,15 +38,15 @@ class Board extends React.Component {
   //  }
 
   renderSquare() {
-    return (
-      <div>
-        {this.state.battleShipFirstState.map(battleShipPlayingBoardSingleLine =>
-          battleShipPlayingBoardSingleLine.map(battleShipSingleSquare => (
+    return this.state.battleShipFirstState.map(
+      battleShipPlayingBoardSingleLine => (
+        <div className="board-row">
+          {" "}
+          {battleShipPlayingBoardSingleLine.map(battleShipSingleSquare => (
             <Square> {battleShipSingleSquare}</Square>
-          ))
-        )}
-        ;
-      </div>
+          ))}
+        </div>
+      )
     );
   }
 
