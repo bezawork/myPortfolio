@@ -11,7 +11,7 @@ class Board extends React.Component {
     const battleShipArray = Array(size);
 
     for (let j = 0; j < size; j++) {
-      battleShipArray[j] = Array(size).fill(5);
+      battleShipArray[j] = Array(size).fill(null);
     }
 
     return battleShipArray;
