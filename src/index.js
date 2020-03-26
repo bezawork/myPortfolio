@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function Square(props) {
-  return <button className="square">{props.children}</button>;
+  return (
+    <button className="square" onClick={() => props.onClick()}>
+      {props.children}
+    </button>
+  );
 }
 
 class Board extends React.Component {
@@ -21,29 +25,33 @@ class Board extends React.Component {
     super(props);
     this.state = {
       battleShipFirstState: this.battleShipPlayingBoard(this.props.size),
-      xIsNext: true
+      hit: true
     };
   }
 
-  // handleClick(i) {
-  //   const squares = this.state.squares.slice();
-  //   if (calculateWinner(squares) || squares[i]) {
-  //     return;
-  //   }
-  //   squares[i] = this.state.xIsNext ? "X" : "O";
-  //   this.setState({
-  //     squares: squares,
-  //     xIsNext: !this.state.xIsNext
-  //   });
-  //  }
+  handleClick(i) {
+    const battleShipFirstState = this.state.battleShipFirstState.slice();
+    // if (calculateWinner(squares) || squares[i]) {
+    //   return;
+    // }
+    battleShipFirstState[i][i] = this.state.hit ? "X" : "O";
+    this.setState({
+      battleShipFirstState: battleShipFirstState,
+      hit: !this.state.xIsNext
+    });
+  }
 
-  renderSquare() {
+  renderSquare(i) {
     return this.state.battleShipFirstState.map(
       battleShipPlayingBoardSingleLine => (
         <div className="board-row">
           {" "}
+          {console.log(battleShipPlayingBoardSingleLine)}
           {battleShipPlayingBoardSingleLine.map(battleShipSingleSquare => (
-            <Square> {battleShipSingleSquare}</Square>
+            <Square onClick={() => this.handleClick(i)}>
+              {" "}
+              {battleShipSingleSquare}
+            </Square>
           ))}
         </div>
       )
@@ -58,7 +66,11 @@ class Board extends React.Component {
     // } else {
     //   status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     // }
-    return <div>{this.renderSquare()}</div>;
+    return (
+      <React.Fragment>
+        <div>{this.renderSquare(0)}</div>
+      </React.Fragment>
+    );
   }
 }
 
