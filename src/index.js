@@ -34,10 +34,10 @@ class Board extends React.Component {
     // if (calculateWinner(squares) || squares[i]) {
     //   return;
     // }
-    battleShipFirstState[i][i] = this.state.hit ? "X" : "O";
+    battleShipFirstState[0][0] = this.state.hit ? "X" : "O";
     this.setState({
       battleShipFirstState: battleShipFirstState,
-      hit: !this.state.xIsNext
+      hit: !this.state.hit
     });
   }
 
