@@ -1,12 +1,14 @@
 import React from "react";
-import "./App.css";
+import Board from "./Board";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello, React!</h1>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Board size={10} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
